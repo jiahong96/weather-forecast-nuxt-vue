@@ -29,7 +29,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
+
   data () {
     return {
       title: 'Weather Forecast',
@@ -38,7 +40,11 @@ export default {
   },
   methods: {
     queryWeather (city) {
-    }
+      this.query(city)
+    },
+    ...mapMutations({
+      query: 'weather/query'
+    })
   }
 }
 </script>

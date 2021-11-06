@@ -11,6 +11,8 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+
+      <city-search-input @query="queryWeather" />
     </v-app-bar>
     <v-main>
       <v-container>
@@ -32,6 +34,10 @@ export default {
     return {
       title: 'Weather Forecast',
       author: 'Loo Cheah Hong'
+    }
+  },
+  methods: {
+    queryWeather (city) {
     }
   }
 }

@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      queryByLocation: 'weather/queryWeatherByLocation'
+      queryByLocation: 'weather/queryWeatherByLocation',
+      queryForecastByLocation: 'weather/queryForecastByLocation'
     }),
     findMe () {
       if (!navigator.geolocation) {
@@ -57,6 +58,7 @@ export default {
       const longitude = position.coords.longitude
 
       this.queryByLocation({ lat: latitude, lon: longitude })
+      this.queryForecastByLocation({ lat: latitude, lon: longitude })
     },
     error () {
       this.geoStatus = 'Unable to retrieve your location'

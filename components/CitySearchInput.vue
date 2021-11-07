@@ -72,12 +72,16 @@ export default {
       value && value !== this.select && this.querySelection(value)
     },
     select (value) {
-      value && this.query(value)
+      if (value) {
+        this.query(value)
+        this.queryForecast(value)
+      }
     }
   },
   methods: {
     ...mapActions({
-      query: 'weather/queryWeather'
+      query: 'weather/queryWeather',
+      queryForecast: 'weather/queryForecast'
     }),
     ...mapMutations({
       setSelection: 'weather/updateSelection'

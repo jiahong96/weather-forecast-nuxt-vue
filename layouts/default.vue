@@ -4,15 +4,14 @@
       fixed
       app
     >
-      <v-btn
-        icon
-      >
-        <v-icon>mdi-weather-cloudy</v-icon>
-      </v-btn>
+      <v-icon class="mx-2">
+        mdi-weather-cloudy
+      </v-icon>
       <v-toolbar-title v-text="title" />
       <v-spacer />
 
-      <city-search-input @query="queryWeather" />
+      <city-search-input />
+      <current-location-button />
     </v-app-bar>
     <v-main>
       <v-container>
@@ -29,22 +28,12 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 export default {
-
   data () {
     return {
       title: 'Weather Forecast',
       author: 'Loo Cheah Hong'
     }
-  },
-  methods: {
-    queryWeather (city) {
-      this.query(city)
-    },
-    ...mapMutations({
-      query: 'weather/query'
-    })
   }
 }
 </script>

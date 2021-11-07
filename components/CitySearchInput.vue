@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex'
+
 export default {
   data () {
     return {
@@ -52,8 +54,17 @@ export default {
         'Kampung Lemal',
         'Pulai Chondong'
       ],
-      select: null,
       search: null
+    }
+  },
+  computed: {
+    select: {
+      get () {
+        return this.$store.state.weather.selection
+      },
+      set (value) {
+        this.setSelection(value)
+      }
     }
   },
   watch: {
@@ -61,10 +72,16 @@ export default {
       value && value !== this.select && this.querySelection(value)
     },
     select (value) {
-      this.$emit('query', value)
+      value && this.query(value)
     }
   },
   methods: {
+    ...mapActions({
+      query: 'weather/queryWeather'
+    }),
+    ...mapMutations({
+      setSelection: 'weather/updateSelection'
+    }),
     querySelection (searchValue) {
       this.loading = true
       // Simulated query
@@ -74,11 +91,10 @@ export default {
         })
         this.loading = false
       }, 500)
+    },
+    clearSelection () {
+      this.select = null
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
